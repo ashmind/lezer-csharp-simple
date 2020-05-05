@@ -1,0 +1,233 @@
+# Minimal
+
+0
+
+==>
+
+Tokens(Number)
+
+# Chars
+
+'a'
+'\\'
+'\''
+
+==>
+
+Tokens(Char,Char,Char)
+
+# Strings
+
+"A string with \"double\" and 'single' quotes"
+"\\"
+
+==>
+
+Tokens(String,String)
+
+# Numbers
+
+101;
+3.14;
+3.14e+1;
+0x1ABCDEFabcdef;
+0b1010101001;
+1e+3;
+
+==>
+
+Tokens(
+  Number,Punctuation,
+  Number,Punctuation,
+  Number,Punctuation,
+  Number,Punctuation,
+  Number,Punctuation,
+  Number,Punctuation)
+
+# Identifiers
+
+x1;
+
+==>
+
+Tokens(Identifier,Punctuation)
+
+# Arrays
+
+new int[1] { 1 };
+
+==>
+
+Tokens(Keyword,Keyword,Punctuation,Number,Punctuation,Punctuation,Number,Punctuation,Punctuation)
+
+# Arrow function
+
+async a => 4;
+
+==>
+
+Tokens(Keyword,Identifier,Punctuation,Number,Punctuation)
+
+# Ternary operator
+
+condition ? case1 : case2;
+
+==>
+
+Tokens(Identifier,Punctuation,Identifier,Punctuation,Identifier,Punctuation)
+
+# typeof/nameof
+
+typeof(x);
+nameof(x);
+
+==>
+
+Tokens(
+  Keyword,Punctuation,Identifier,Punctuation,Punctuation,
+  Keyword,Punctuation,Identifier,Punctuation,Punctuation)
+
+# Augmented assignment
+
+a |= 1;
+b %= 2;
+c ^= 3;
+d += 4;
+e *= 5;
+f += 1;
+g >>= 1;
+h <<= 1;
+i ??= 1;
+
+==>
+
+Tokens(
+  Identifier,Punctuation,Number,Punctuation,
+  Identifier,Punctuation,Number,Punctuation,
+  Identifier,Punctuation,Number,Punctuation,
+  Identifier,Punctuation,Number,Punctuation,
+  Identifier,Punctuation,Number,Punctuation,
+  Identifier,Punctuation,Number,Punctuation,
+  Identifier,Punctuation,Number,Punctuation,
+  Identifier,Punctuation,Number,Punctuation,
+  Identifier,Punctuation,Number,Punctuation)
+
+# Forward slashes after parenthesized expressions
+
+(foo - bar) / baz;
+
+==>
+
+Tokens(Punctuation,Identifier,Punctuation,Identifier,Punctuation,Punctuation,Identifier,Punctuation)
+
+# Atoms
+
+this;
+null;
+true;
+false;
+
+==>
+
+Tokens(
+  Keyword,Punctuation,
+  Keyword,Punctuation,
+  Keyword,Punctuation,
+  Keyword,Punctuation)
+
+# Member expressions
+
+x.P;
+x?.P;
+x!.P;
+
+==>
+
+Tokens(
+  Identifier,Punctuation,Identifier,Punctuation,
+  Identifier,Punctuation,Identifier,Punctuation,
+  Identifier,Punctuation,Identifier,Punctuation)
+
+# Constructor calls
+
+new X();
+
+==>
+
+Tokens(Keyword,Identifier,Punctuation,Punctuation,Punctuation)
+
+# Await expressions
+
+await task;
+
+==>
+
+Tokens(Keyword,Identifier,Punctuation)
+
+# Numeric operators
+
+i++;
+i--;
+i + j * 3 - j % 5 + d / 3;
++x;
+-x;
+
+==>
+
+Tokens(
+  Identifier,Punctuation,Punctuation,
+  Identifier,Punctuation,Punctuation,
+  Identifier,Punctuation,Identifier,Punctuation,Number,Punctuation,Identifier,Punctuation,Number,Punctuation,Identifier,Punctuation,Number,Punctuation,
+  Punctuation,Identifier,Punctuation,
+  Punctuation,Identifier,Punctuation)
+
+# Boolean operators
+
+i || j;
+i && j;
+i ?? j;
+!a && !b || !c && !d;
+
+==>
+
+Tokens(
+  Identifier,Punctuation,Identifier,Punctuation,
+  Identifier,Punctuation,Identifier,Punctuation,
+  Identifier,Punctuation,Identifier,Punctuation,
+  Punctuation,Identifier,Punctuation,Punctuation,Identifier,Punctuation,Punctuation,Identifier,Punctuation,Punctuation,Identifier,Punctuation)
+
+# Bitwise operators
+
+i >> j;
+i << j;
+i & j;
+i | j;
+~i ^ ~j;
+
+==>
+
+Tokens(
+  Identifier,Punctuation,Identifier,Punctuation,
+  Identifier,Punctuation,Identifier,Punctuation,
+  Identifier,Punctuation,Identifier,Punctuation,
+  Identifier,Punctuation,Identifier,Punctuation,
+  Punctuation,Identifier,Punctuation,Punctuation,Identifier,Punctuation)
+
+# Relational operators
+
+x < y;
+x <= y;
+x == y;
+x != y;
+x > y;
+x >= y;
+
+==>
+
+Tokens(
+  Identifier,Punctuation,Identifier,Punctuation,
+  Identifier,Punctuation,Identifier,Punctuation,
+  Identifier,Punctuation,Identifier,Punctuation,
+  Identifier,Punctuation,Identifier,Punctuation,
+  Identifier,Punctuation,Identifier,Punctuation,
+  Identifier,Punctuation,Identifier,Punctuation)

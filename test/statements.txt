@@ -1,0 +1,134 @@
+# Variable declaration
+
+var a = 1;
+
+==>
+
+Tokens(Keyword,Identifier,Punctuation,Number,Punctuation)
+
+# If statement
+
+if (x) f1(); else f2();
+
+==>
+
+Tokens(Keyword,Punctuation,Identifier,Punctuation,Identifier,Punctuation,Punctuation,Punctuation,Keyword,Identifier,Punctuation,Punctuation,Punctuation)
+
+# While loop
+
+while (true) f();
+
+==>
+
+Tokens(Keyword,Punctuation,Keyword,Punctuation,Identifier,Punctuation,Punctuation,Punctuation)
+
+# Label
+
+foo: while(true) break foo;
+
+==>
+
+Tokens(Identifier,Punctuation,Keyword,Punctuation,Keyword,Punctuation,Keyword,Identifier,Punctuation)
+
+# Try
+
+try { throw new Exception(); } catch {}
+try { 1; } catch (x) { 2; } finally { 3; }
+
+==>
+
+Tokens(
+  Keyword,Punctuation,Keyword,Keyword,Identifier,Punctuation,Punctuation,Punctuation,Punctuation,Keyword,Punctuation,Punctuation,
+  Keyword,Punctuation,Number,Punctuation,Punctuation,Keyword,Punctuation,Identifier,Punctuation,Punctuation,Number,Punctuation,Punctuation,Keyword,Punctuation,Number,Punctuation,Punctuation)
+
+# Switch
+
+switch (x) {
+  case 1:
+    return true;
+  case 2:
+    return false;
+  default:
+    break;
+}
+
+==>
+
+Tokens(Keyword,Punctuation,Identifier,Punctuation,Punctuation,Keyword,Number,Punctuation,Keyword,Keyword,Punctuation,Keyword,Number,Punctuation,Keyword,Keyword,Punctuation,Keyword,Punctuation,Keyword,Punctuation,Punctuation)
+
+# For
+
+for (var x = 1; x < 10; x++) {}
+
+==>
+
+Tokens(Keyword,Punctuation,Keyword,Identifier,Punctuation,Number,Punctuation,Identifier,Punctuation,Number,Punctuation,Identifier,Punctuation,Punctuation,Punctuation,Punctuation)
+
+# Foreach
+
+foreach (var x in xs) {}
+
+==>
+
+Tokens(Keyword,Punctuation,Keyword,Identifier,Keyword,Identifier,Punctuation,Punctuation,Punctuation)
+
+# Labeled statements
+
+theLoop: for (;;) {
+  if (a) {
+    break theLoop;
+  }
+}
+
+==>
+
+Tokens(
+  Identifier,Punctuation,Keyword,Punctuation,Punctuation,Punctuation,Punctuation,Punctuation,
+  Keyword,Punctuation,Identifier,Punctuation,Punctuation,
+  Keyword,Identifier,Punctuation,
+  Punctuation,
+  Punctuation)
+
+# Yield
+
+yield 1;
+
+==>
+
+Tokens(Keyword,Number,Punctuation)
+
+# Empty statements
+
+;;;
+
+==>
+
+Tokens(Punctuation,Punctuation,Punctuation)
+
+# Comments
+
+/* a */
+one;
+
+/* b **/
+two;
+
+/* c ***/
+three;
+
+/* d
+
+***/
+four;
+
+y // comment
+  * z;
+
+==>
+
+Tokens(
+  Comment,Identifier,Punctuation,
+  Comment,Identifier,Punctuation,
+  Comment,Identifier,Punctuation,
+  Comment,Identifier,Punctuation,
+  Identifier,Comment,Punctuation,Identifier,Punctuation)

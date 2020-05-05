@@ -1,0 +1,14 @@
+# Accessibility
+
+public int f1;
+internal int f2;
+protected int f3;
+private int f4;
+
+==>
+
+Tokens(
+  Keyword,Keyword,Identifier,Punctuation,
+  Keyword,Keyword,Identifier,Punctuation,
+  Keyword,Keyword,Identifier,Punctuation,
+  Keyword,Keyword,Identifier,Punctuation)

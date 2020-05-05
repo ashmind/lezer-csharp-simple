@@ -1,0 +1,31 @@
+# Using
+
+using System.Text.RegularExpressions;
+
+==>
+
+Tokens(Keyword,Identifier,Punctuation,Identifier,Punctuation,Identifier,Punctuation)
+
+# Namespace
+
+namespace A.B.C {
+}
+
+==>
+
+Tokens(Keyword,Identifier,Punctuation,Identifier,Punctuation,Identifier,Punctuation,Punctuation)
+
+# Types
+
+class C {}
+struct S {}
+interface I {}
+enum E {}
+
+==>
+
+Tokens(
+  Keyword,Identifier,Punctuation,Punctuation,
+  Keyword,Identifier,Punctuation,Punctuation,
+  Keyword,Identifier,Punctuation,Punctuation,
+  Keyword,Identifier,Punctuation,Punctuation)

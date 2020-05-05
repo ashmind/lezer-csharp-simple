@@ -1,0 +1,216 @@
+@top Tokens {
+  token*
+}
+
+token {
+  Identifier|Keyword|literal|Punctuation
+}
+
+Punctuation {
+  brace|"?."|"!."|"."|","|";"|"=>"|assignment|operator
+}
+
+brace {
+  "("|")"|"["|"]"|"{"|"}"
+}
+
+assignment {
+  "=" |
+  "*=" | "/=" | "+=" | "-=" | "%=" |
+  "^=" | "&=" | "|=" | ">>=" | "<<=" |
+  "??="
+}
+
+operator {
+  "!" | "~" |
+  "*" | "/" | "+" | "-" | "%" |
+  "<" | ">" | "==" | "!=" | ">=" | "<=" |
+  "^" | "&" | "|" | ">>" | "<<" |
+  "&&" | "||" | "??" |
+  "?" | ":" |
+  "++" | "--"
+}
+
+Keyword {
+  // order matches Roslyn
+  // https://github.com/dotnet/roslyn/blob/2f510ce51a222f618e85a5084683ea41d1a70db2/src/Compilers/CSharp/Portable/Syntax/SyntaxKind.cs#L85
+  kw<'bool'> |
+  kw<'byte'> |
+  kw<'sbyte'> |
+  kw<'short'> |
+  kw<'ushort'> |
+  kw<'int'> |
+  kw<'uint'> |
+  kw<'long'> |
+  kw<'ulong'> |
+  kw<'double'> |
+  kw<'float'> |
+  kw<'decimal'> |
+  kw<'string'> |
+  kw<'char'> |
+  kw<'void'> |
+  kw<'object'> |
+  kw<'typeof'> |
+  kw<'sizeof'> |
+  kw<'null'> |
+  kw<'true'> |
+  kw<'false'> |
+  kw<'if'> |
+  kw<'else'> |
+  kw<'while'> |
+  kw<'for'> |
+  kw<'foreach'> |
+  kw<'do'> |
+  kw<'switch'> |
+  kw<'case'> |
+  kw<'default'> |
+  kw<'try'> |
+  kw<'catch'> |
+  kw<'finally'> |
+  kw<'lock'> |
+  kw<'goto'> |
+  kw<'break'> |
+  kw<'continue'> |
+  kw<'return'> |
+  kw<'throw'> |
+  kw<'public'> |
+  kw<'private'> |
+  kw<'internal'> |
+  kw<'protected'> |
+  kw<'static'> |
+  kw<'readonly'> |
+  kw<'sealed'> |
+  kw<'const'> |
+  kw<'fixed'> |
+  kw<'stackalloc'> |
+  kw<'volatile'> |
+  kw<'new'> |
+  kw<'override'> |
+  kw<'abstract'> |
+  kw<'virtual'> |
+  kw<'event'> |
+  kw<'extern'> |
+  kw<'ref'> |
+  kw<'out'> |
+  kw<'in'> |
+  kw<'is'> |
+  kw<'as'> |
+  kw<'params'> |
+  kw<'arglist'> |
+  kw<'makeref'> |
+  kw<'reftype'> |
+  kw<'refvalue'> |
+  kw<'this'> |
+  kw<'base'> |
+  kw<'namespace'> |
+  kw<'using'> |
+  kw<'class'> |
+  kw<'struct'> |
+  kw<'interface'> |
+  kw<'enum'> |
+  kw<'delegate'> |
+  kw<'checked'> |
+  kw<'unchecked'> |
+  kw<'unsafe'> |
+  kw<'operator'> |
+  kw<'explicit'> |
+  kw<'implicit'> |
+
+  // contextual in Roslyn, but not in this parser yet
+  kw<'yield'> |
+  kw<'partial'> |
+  kw<'alias'> |
+  kw<'global'> |
+  kw<'assembly'> |
+  kw<'module'> |
+  kw<'type'> |
+  kw<'field'> |
+  kw<'method'> |
+  kw<'param'> |
+  kw<'property'> |
+  kw<'typevar'> |
+  kw<'get'> |
+  kw<'set'> |
+  kw<'add'> |
+  kw<'remove'> |
+  kw<'where'> |
+  kw<'from'> |
+  kw<'group'> |
+  kw<'join'> |
+  kw<'into'> |
+  kw<'let'> |
+  kw<'by'> |
+  kw<'select'> |
+  kw<'orderby'> |
+  kw<'on'> |
+  kw<'equals'> |
+  kw<'ascending'> |
+  kw<'descending'> |
+  kw<'nameof'> |
+  kw<'async'> |
+  kw<'await'> |
+  kw<'when'> |
+  kw<'or'> |
+  kw<'and'> |
+  kw<'not'> |
+
+  // separate in Roslyn
+  kw<'var'> |
+
+  // not a keyword in Roslyn?
+  kw<'dynamic'>
+}
+
+Identifier {
+  identifier
+}
+
+literal {
+  String|Number|Char
+}
+
+Comment {
+  lineComment|blockComment
+}
+
+kw<term> { @specialize<identifier, term> }
+
+@skip { whitespace | Comment }
+
+@tokens {
+  whitespace { std.whitespace+ }
+
+  lineComment { "//" ![\n]* }
+
+  blockComment { "/*" blockCommentRest }
+
+  blockCommentRest { ![*] blockCommentRest | "*" blockCommentAfterStar }
+
+  blockCommentAfterStar { "/" | "*" blockCommentAfterStar | ![/*] blockCommentRest }
+
+  @precedence { blockComment, lineComment }
+  @precedence { blockComment, "/" }
+  @precedence { lineComment, "/" }
+
+  identifierChar { std.asciiLetter | $[_$\u{a1}-\u{10ffff}] }
+
+  identifier { identifierChar (identifierChar | std.digit)* }
+
+  @precedence { identifier, whitespace }
+
+  Number {
+    (std.digit+ ("." std.digit*)? | "." std.digit+) (("e" | "E") ("+" | "-")? std.digit+)? |
+    "0x" (std.digit | $[a-fA-F])+ |
+    "0b" $[01]+
+  }
+
+  @precedence { Number, "." }
+
+  String {
+    '"' (![\\\n"] | "\\" ![\n])* '"'?
+  }
+
+  Char {
+    "'" (![\\\n'] | "\\" ![\n]) "'"?
+  }
+}

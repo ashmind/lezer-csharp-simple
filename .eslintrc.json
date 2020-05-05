@@ -1,0 +1,17 @@
+{
+  "root": true,
+  "ignorePatterns": [
+    "node_modules/",
+    "src/parser.*",
+    "dist/"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module"
+  },
+  "extends": "eslint:recommended",
+  "rules": {
+    "quotes": ["error", "single"],
+    "semi": "error"
+  }
+}
