@@ -76,16 +76,18 @@ condition ? case1 : case2;
 
 Root(Identifier,Punctuation,Identifier,Punctuation,Identifier,Punctuation)
 
-# typeof/nameof
+# typeof/sizeof/nameof
 
 typeof(x);
+sizeof(x);
 nameof(x);
 
 ==>
 
 Root(
-  Keyword,Punctuation,Identifier,Punctuation,Punctuation,
-  Keyword,Punctuation,Identifier,Punctuation,Punctuation)
+  Keyword,Group(Punctuation,Identifier,Punctuation),Punctuation,
+  Keyword,Group(Punctuation,Identifier,Punctuation),Punctuation,
+  Keyword,Group(Punctuation,Identifier,Punctuation),Punctuation)
 
 # Augmented assignment
 
@@ -118,7 +120,7 @@ Root(
 
 ==>
 
-Root(Punctuation,Identifier,Punctuation,Identifier,Punctuation,Punctuation,Identifier,Punctuation)
+Root(Group(Punctuation,Identifier,Punctuation,Identifier,Punctuation),Punctuation,Identifier,Punctuation)
 
 # Atoms
 
@@ -154,7 +156,7 @@ new X();
 
 ==>
 
-Root(Keyword,Identifier,Punctuation,Punctuation,Punctuation)
+Root(Keyword,Identifier,Group(Punctuation,Punctuation),Punctuation)
 
 # Await expressions
 

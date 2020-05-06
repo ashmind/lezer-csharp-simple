@@ -12,7 +12,7 @@ if (x) f1(); else f2();
 
 ==>
 
-Root(Keyword,Punctuation,Identifier,Punctuation,Identifier,Punctuation,Punctuation,Punctuation,Keyword,Identifier,Punctuation,Punctuation,Punctuation)
+Root(Keyword,Group(Punctuation,Identifier,Punctuation),Identifier,Group(Punctuation,Punctuation),Punctuation,Keyword,Identifier,Group(Punctuation,Punctuation),Punctuation)
 
 # While loop
 
@@ -24,7 +24,7 @@ while (true) {
 ==>
 
 Root(
-  Keyword,Punctuation,Keyword,Punctuation,Block(Punctuation,
+  Keyword,Group(Punctuation,Keyword,Punctuation),Block(Punctuation,
     Keyword,Punctuation,
     Keyword,Punctuation,
   Punctuation))
@@ -35,7 +35,7 @@ foo: while(true) break foo;
 
 ==>
 
-Root(Identifier,Punctuation,Keyword,Punctuation,Keyword,Punctuation,Keyword,Identifier,Punctuation)
+Root(Identifier,Punctuation,Keyword,Group(Punctuation,Keyword,Punctuation),Keyword,Identifier,Punctuation)
 
 # Try
 
@@ -45,8 +45,8 @@ try { 1; } catch (x) { 2; } finally { 3; }
 ==>
 
 Root(
-  Keyword,Block(Punctuation,Keyword,Keyword,Identifier,Punctuation,Punctuation,Punctuation,Punctuation),Keyword,Block(Punctuation,Punctuation),
-  Keyword,Block(Punctuation,Number,Punctuation,Punctuation),Keyword,Punctuation,Identifier,Punctuation,Block(Punctuation,Number,Punctuation,Punctuation),Keyword,Block(Punctuation,Number,Punctuation,Punctuation))
+  Keyword,Block(Punctuation,Keyword,Keyword,Identifier,Group(Punctuation,Punctuation),Punctuation,Punctuation),Keyword,Block(Punctuation,Punctuation),
+  Keyword,Block(Punctuation,Number,Punctuation,Punctuation),Keyword,Group(Punctuation,Identifier,Punctuation),Block(Punctuation,Number,Punctuation,Punctuation),Keyword,Block(Punctuation,Number,Punctuation,Punctuation))
 
 # Switch
 
@@ -62,7 +62,7 @@ switch (x) {
 ==>
 
 Root(
-  Keyword,Punctuation,Identifier,Punctuation, Block(Punctuation,
+  Keyword,Group(Punctuation,Identifier,Punctuation),Block(Punctuation,
     Keyword,Number,Punctuation,
     Keyword,Keyword,Punctuation,
     Keyword,Number,Punctuation,
@@ -77,7 +77,7 @@ for (var x = 1; x < 10; x++) {}
 
 ==>
 
-Root(Keyword,Punctuation,Keyword,Identifier,Punctuation,Number,Punctuation,Identifier,Punctuation,Number,Punctuation,Identifier,Punctuation,Punctuation,Block(Punctuation,Punctuation))
+Root(Keyword,Group(Punctuation,Keyword,Identifier,Punctuation,Number,Punctuation,Identifier,Punctuation,Number,Punctuation,Identifier,Punctuation,Punctuation),Block(Punctuation,Punctuation))
 
 # Foreach
 
@@ -85,7 +85,7 @@ foreach (var x in xs) {}
 
 ==>
 
-Root(Keyword,Punctuation,Keyword,Identifier,Keyword,Identifier,Punctuation,Block(Punctuation,Punctuation))
+Root(Keyword,Group(Punctuation,Keyword,Identifier,Keyword,Identifier,Punctuation),Block(Punctuation,Punctuation))
 
 # Yield
 

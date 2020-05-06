@@ -3,15 +3,19 @@
 }
 
 node {
-  Block|Identifier|Keyword|literal|Punctuation
+  Block|Group|Identifier|Keyword|literal|Punctuation
 }
 
 Block {
   "{" node* "}"
 }
 
+Group {
+  "(" node* ")"
+}
+
 Punctuation {
-  "("|")"|"["|"]"|"?."|"!."|"."|","|";"|"=>"|assignment|operator
+  "["|"]"|"?."|"!."|"."|","|";"|"=>"|assignment|operator
 }
 
 assignment {
@@ -216,6 +220,8 @@ kw<term> { @specialize<identifier, term> }
 
   "{"[name=Punctuation]
   "}"[name=Punctuation]
+  "("[name=Punctuation]
+  ")"[name=Punctuation]
 }
 
 @detectDelim
