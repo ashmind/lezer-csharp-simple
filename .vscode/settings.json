@@ -3,7 +3,23 @@
     "source.fixAll": true
   },
   "cSpell.words": [
+    "Andrey",
+    "Delim",
+    "Shchekin",
+    "arglist",
     "lezer",
-    "struct"
+    "makeref",
+    "nameof",
+    "readonly",
+    "reftype",
+    "refvalue",
+    "sbyte",
+    "stackalloc",
+    "struct",
+    "typeof",
+    "typevar",
+    "uint",
+    "ulong",
+    "ushort"
   ]
 }

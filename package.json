@@ -1,5 +1,5 @@
 {
-  "name": "lezer-csharp-tokens-only",
+  "name": "lezer-csharp-simple",
   "version": "0.0.1",
   "description": "lezer-based C# grammar",
   "main": "dist/index.js",

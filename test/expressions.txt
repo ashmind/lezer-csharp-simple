@@ -4,7 +4,7 @@
 
 ==>
 
-Tokens(Number)
+Root(Number)
 
 # Chars
 
@@ -14,7 +14,7 @@ Tokens(Number)
 
 ==>
 
-Tokens(Char,Char,Char)
+Root(Char,Char,Char)
 
 # Strings
 
@@ -23,7 +23,7 @@ Tokens(Char,Char,Char)
 
 ==>
 
-Tokens(String,String)
+Root(String,String)
 
 # Numbers
 
@@ -36,7 +36,7 @@ Tokens(String,String)
 
 ==>
 
-Tokens(
+Root(
   Number,Punctuation,
   Number,Punctuation,
   Number,Punctuation,
@@ -50,7 +50,7 @@ x1;
 
 ==>
 
-Tokens(Identifier,Punctuation)
+Root(Identifier,Punctuation)
 
 # Arrays
 
@@ -58,7 +58,7 @@ new int[1] { 1 };
 
 ==>
 
-Tokens(Keyword,Keyword,Punctuation,Number,Punctuation,Punctuation,Number,Punctuation,Punctuation)
+Root(Keyword,Keyword,Punctuation,Number,Punctuation,Block(Punctuation,Number,Punctuation),Punctuation)
 
 # Arrow function
 
@@ -66,7 +66,7 @@ async a => 4;
 
 ==>
 
-Tokens(Keyword,Identifier,Punctuation,Number,Punctuation)
+Root(Keyword,Identifier,Punctuation,Number,Punctuation)
 
 # Ternary operator
 
@@ -74,7 +74,7 @@ condition ? case1 : case2;
 
 ==>
 
-Tokens(Identifier,Punctuation,Identifier,Punctuation,Identifier,Punctuation)
+Root(Identifier,Punctuation,Identifier,Punctuation,Identifier,Punctuation)
 
 # typeof/nameof
 
@@ -83,7 +83,7 @@ nameof(x);
 
 ==>
 
-Tokens(
+Root(
   Keyword,Punctuation,Identifier,Punctuation,Punctuation,
   Keyword,Punctuation,Identifier,Punctuation,Punctuation)
 
@@ -101,7 +101,7 @@ i ??= 1;
 
 ==>
 
-Tokens(
+Root(
   Identifier,Punctuation,Number,Punctuation,
   Identifier,Punctuation,Number,Punctuation,
   Identifier,Punctuation,Number,Punctuation,
@@ -118,7 +118,7 @@ Tokens(
 
 ==>
 
-Tokens(Punctuation,Identifier,Punctuation,Identifier,Punctuation,Punctuation,Identifier,Punctuation)
+Root(Punctuation,Identifier,Punctuation,Identifier,Punctuation,Punctuation,Identifier,Punctuation)
 
 # Atoms
 
@@ -129,7 +129,7 @@ false;
 
 ==>
 
-Tokens(
+Root(
   Keyword,Punctuation,
   Keyword,Punctuation,
   Keyword,Punctuation,
@@ -143,7 +143,7 @@ x!.P;
 
 ==>
 
-Tokens(
+Root(
   Identifier,Punctuation,Identifier,Punctuation,
   Identifier,Punctuation,Identifier,Punctuation,
   Identifier,Punctuation,Identifier,Punctuation)
@@ -154,7 +154,7 @@ new X();
 
 ==>
 
-Tokens(Keyword,Identifier,Punctuation,Punctuation,Punctuation)
+Root(Keyword,Identifier,Punctuation,Punctuation,Punctuation)
 
 # Await expressions
 
@@ -162,7 +162,7 @@ await task;
 
 ==>
 
-Tokens(Keyword,Identifier,Punctuation)
+Root(Keyword,Identifier,Punctuation)
 
 # Numeric operators
 
@@ -174,7 +174,7 @@ i + j * 3 - j % 5 + d / 3;
 
 ==>
 
-Tokens(
+Root(
   Identifier,Punctuation,Punctuation,
   Identifier,Punctuation,Punctuation,
   Identifier,Punctuation,Identifier,Punctuation,Number,Punctuation,Identifier,Punctuation,Number,Punctuation,Identifier,Punctuation,Number,Punctuation,
@@ -190,7 +190,7 @@ i ?? j;
 
 ==>
 
-Tokens(
+Root(
   Identifier,Punctuation,Identifier,Punctuation,
   Identifier,Punctuation,Identifier,Punctuation,
   Identifier,Punctuation,Identifier,Punctuation,
@@ -206,7 +206,7 @@ i | j;
 
 ==>
 
-Tokens(
+Root(
   Identifier,Punctuation,Identifier,Punctuation,
   Identifier,Punctuation,Identifier,Punctuation,
   Identifier,Punctuation,Identifier,Punctuation,
@@ -224,7 +224,7 @@ x >= y;
 
 ==>
 
-Tokens(
+Root(
   Identifier,Punctuation,Identifier,Punctuation,
   Identifier,Punctuation,Identifier,Punctuation,
   Identifier,Punctuation,Identifier,Punctuation,

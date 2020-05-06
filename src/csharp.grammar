@@ -1,17 +1,17 @@
-@top Tokens {
-  token*
+@top Root {
+  node*
 }
 
-token {
-  Identifier|Keyword|literal|Punctuation
+node {
+  Block|Identifier|Keyword|literal|Punctuation
+}
+
+Block {
+  "{" node* "}"
 }
 
 Punctuation {
-  brace|"?."|"!."|"."|","|";"|"=>"|assignment|operator
-}
-
-brace {
-  "("|")"|"["|"]"|"{"|"}"
+  "("|")"|"["|"]"|"?."|"!."|"."|","|";"|"=>"|assignment|operator
 }
 
 assignment {
@@ -213,4 +213,9 @@ kw<term> { @specialize<identifier, term> }
   Char {
     "'" (![\\\n'] | "\\" ![\n]) "'"?
   }
+
+  "{"[name=Punctuation]
+  "}"[name=Punctuation]
 }
+
+@detectDelim

@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 ==>
 
-Tokens(Keyword,Identifier,Punctuation,Identifier,Punctuation,Identifier,Punctuation)
+Root(Keyword,Identifier,Punctuation,Identifier,Punctuation,Identifier,Punctuation)
 
 # Namespace
 
@@ -13,7 +13,7 @@ namespace A.B.C {
 
 ==>
 
-Tokens(Keyword,Identifier,Punctuation,Identifier,Punctuation,Identifier,Punctuation,Punctuation)
+Root(Keyword,Identifier,Punctuation,Identifier,Punctuation,Identifier,Block(Punctuation,Punctuation))
 
 # Types
 
@@ -24,8 +24,8 @@ enum E {}
 
 ==>
 
-Tokens(
-  Keyword,Identifier,Punctuation,Punctuation,
-  Keyword,Identifier,Punctuation,Punctuation,
-  Keyword,Identifier,Punctuation,Punctuation,
-  Keyword,Identifier,Punctuation,Punctuation)
+Root(
+  Keyword,Identifier,Block(Punctuation,Punctuation),
+  Keyword,Identifier,Block(Punctuation,Punctuation),
+  Keyword,Identifier,Block(Punctuation,Punctuation),
+  Keyword,Identifier,Block(Punctuation,Punctuation))

@@ -1,10 +1,6 @@
-# lezer-csharp-stream
+# lezer-csharp-simple
 
-This is a basic token-only C# grammar for the
-[lezer](https://lezer.codemirror.net/) parser system.
+This is a simple C# grammar for the [lezer](https://lezer.codemirror.net/) parser system.
 
-As full C# parsing is complicated, this grammar produces
-a stream of tokens only suitable for CodeMirror highlighting,
-and not a full syntax tree.
-
-The code is licensed under an MIT license.
+As full C# parsing is complicated, this grammar only handles a minimum of literals, blocks
+and tokens required for CodeMirror highlighting and indents.

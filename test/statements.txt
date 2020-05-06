@@ -4,7 +4,7 @@ var a = 1;
 
 ==>
 
-Tokens(Keyword,Identifier,Punctuation,Number,Punctuation)
+Root(Keyword,Identifier,Punctuation,Number,Punctuation)
 
 # If statement
 
@@ -12,15 +12,22 @@ if (x) f1(); else f2();
 
 ==>
 
-Tokens(Keyword,Punctuation,Identifier,Punctuation,Identifier,Punctuation,Punctuation,Punctuation,Keyword,Identifier,Punctuation,Punctuation,Punctuation)
+Root(Keyword,Punctuation,Identifier,Punctuation,Identifier,Punctuation,Punctuation,Punctuation,Keyword,Identifier,Punctuation,Punctuation,Punctuation)
 
 # While loop
 
-while (true) f();
+while (true) {
+  break;
+  continue;
+}
 
 ==>
 
-Tokens(Keyword,Punctuation,Keyword,Punctuation,Identifier,Punctuation,Punctuation,Punctuation)
+Root(
+  Keyword,Punctuation,Keyword,Punctuation,Block(Punctuation,
+    Keyword,Punctuation,
+    Keyword,Punctuation,
+  Punctuation))
 
 # Label
 
@@ -28,7 +35,7 @@ foo: while(true) break foo;
 
 ==>
 
-Tokens(Identifier,Punctuation,Keyword,Punctuation,Keyword,Punctuation,Keyword,Identifier,Punctuation)
+Root(Identifier,Punctuation,Keyword,Punctuation,Keyword,Punctuation,Keyword,Identifier,Punctuation)
 
 # Try
 
@@ -37,9 +44,9 @@ try { 1; } catch (x) { 2; } finally { 3; }
 
 ==>
 
-Tokens(
-  Keyword,Punctuation,Keyword,Keyword,Identifier,Punctuation,Punctuation,Punctuation,Punctuation,Keyword,Punctuation,Punctuation,
-  Keyword,Punctuation,Number,Punctuation,Punctuation,Keyword,Punctuation,Identifier,Punctuation,Punctuation,Number,Punctuation,Punctuation,Keyword,Punctuation,Number,Punctuation,Punctuation)
+Root(
+  Keyword,Block(Punctuation,Keyword,Keyword,Identifier,Punctuation,Punctuation,Punctuation,Punctuation),Keyword,Block(Punctuation,Punctuation),
+  Keyword,Block(Punctuation,Number,Punctuation,Punctuation),Keyword,Punctuation,Identifier,Punctuation,Block(Punctuation,Number,Punctuation,Punctuation),Keyword,Block(Punctuation,Number,Punctuation,Punctuation))
 
 # Switch
 
@@ -54,7 +61,15 @@ switch (x) {
 
 ==>
 
-Tokens(Keyword,Punctuation,Identifier,Punctuation,Punctuation,Keyword,Number,Punctuation,Keyword,Keyword,Punctuation,Keyword,Number,Punctuation,Keyword,Keyword,Punctuation,Keyword,Punctuation,Keyword,Punctuation,Punctuation)
+Root(
+  Keyword,Punctuation,Identifier,Punctuation, Block(Punctuation,
+    Keyword,Number,Punctuation,
+    Keyword,Keyword,Punctuation,
+    Keyword,Number,Punctuation,
+    Keyword,Keyword,Punctuation,
+    Keyword,Punctuation,
+    Keyword,Punctuation,
+  Punctuation))
 
 # For
 
@@ -62,7 +77,7 @@ for (var x = 1; x < 10; x++) {}
 
 ==>
 
-Tokens(Keyword,Punctuation,Keyword,Identifier,Punctuation,Number,Punctuation,Identifier,Punctuation,Number,Punctuation,Identifier,Punctuation,Punctuation,Punctuation,Punctuation)
+Root(Keyword,Punctuation,Keyword,Identifier,Punctuation,Number,Punctuation,Identifier,Punctuation,Number,Punctuation,Identifier,Punctuation,Punctuation,Block(Punctuation,Punctuation))
 
 # Foreach
 
@@ -70,24 +85,7 @@ foreach (var x in xs) {}
 
 ==>
 
-Tokens(Keyword,Punctuation,Keyword,Identifier,Keyword,Identifier,Punctuation,Punctuation,Punctuation)
-
-# Labeled statements
-
-theLoop: for (;;) {
-  if (a) {
-    break theLoop;
-  }
-}
-
-==>
-
-Tokens(
-  Identifier,Punctuation,Keyword,Punctuation,Punctuation,Punctuation,Punctuation,Punctuation,
-  Keyword,Punctuation,Identifier,Punctuation,Punctuation,
-  Keyword,Identifier,Punctuation,
-  Punctuation,
-  Punctuation)
+Root(Keyword,Punctuation,Keyword,Identifier,Keyword,Identifier,Punctuation,Block(Punctuation,Punctuation))
 
 # Yield
 
@@ -95,7 +93,7 @@ yield 1;
 
 ==>
 
-Tokens(Keyword,Number,Punctuation)
+Root(Keyword,Number,Punctuation)
 
 # Empty statements
 
@@ -103,7 +101,7 @@ Tokens(Keyword,Number,Punctuation)
 
 ==>
 
-Tokens(Punctuation,Punctuation,Punctuation)
+Root(Punctuation,Punctuation,Punctuation)
 
 # Comments
 
@@ -126,7 +124,7 @@ y // comment
 
 ==>
 
-Tokens(
+Root(
   Comment,Identifier,Punctuation,
   Comment,Identifier,Punctuation,
   Comment,Identifier,Punctuation,
