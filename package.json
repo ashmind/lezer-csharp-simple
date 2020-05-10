@@ -12,7 +12,7 @@
     "test-build": "lezer-generator src/csharp.grammar --names -o src/parser && rollup -c && jest test/*.ts"
   },
   "exports": {
-    "import": "./dist/index.es.js",
+    "import": "./dist/index.js",
     "require": "./dist/index.cjs"
   },
   "module": "dist/index.es.js",
