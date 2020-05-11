@@ -1,0 +1,23 @@
+name: Build and Publish
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 12.16.3
+    - run: npm ci
+    - run: npm run build
+    - run: npm test
+    - if: github.ref == 'refs/heads/master'
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+    - if: github.ref == 'refs/heads/master'
+      uses: actions/upload-artifact@v2-preview
+      with:
+        path: ./*.tgz
