@@ -7,15 +7,18 @@
   "scripts": {
     "build": "lezer-generator src/csharp.grammar -o src/parser && rollup -c",
     "build-debug": "lezer-generator src/csharp.grammar --names -o src/parser && rollup -c",
-    "prepare": "npm run build",
     "test": "jest test/*.ts",
     "test-build": "lezer-generator src/csharp.grammar --names -o src/parser && rollup -c && jest test/*.ts"
   },
+  "files": [
+    "dist/*",
+    "src/*.grammar"
+  ],
   "exports": {
     "import": "./dist/index.js",
     "require": "./dist/index.cjs"
   },
-  "module": "dist/index.es.js",
+  "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "license": "MIT",
   "devDependencies": {
