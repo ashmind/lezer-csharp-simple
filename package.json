@@ -1,6 +1,6 @@
 {
   "name": "lezer-csharp-simple",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "lezer-based C# grammar",
   "main": "dist/index.js",
   "type": "module",
@@ -25,14 +25,14 @@
     "@types/jest": "^25.2.1",
     "eslint": "^6.8.0",
     "jest": "^25.4.0",
-    "lezer-generator": "^0.8.3",
+    "lezer-generator": "^0.10.3",
     "rollup": "^1.10.0",
     "rollup-plugin-node-resolve": "^4.2.3",
     "ts-jest": "^25.4.0",
     "typescript": "^3.8.3"
   },
   "dependencies": {
-    "lezer": "^0.8.0"
+    "lezer": "^0.10.3"
   },
   "repository": {
     "type": "git",
@@ -40,7 +40,9 @@
   },
   "jest": {
     "preset": "ts-jest/presets/js-with-ts",
-    "transformIgnorePatterns": [ "/node_modules/(?!lezer-generator)" ],
+    "transformIgnorePatterns": [
+      "/node_modules/(?!lezer-generator)"
+    ],
     "globals": {
       "ts-jest": {
         "tsConfig": "<rootDir>/test/tsconfig.json"
