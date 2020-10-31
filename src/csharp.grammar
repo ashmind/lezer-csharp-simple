@@ -218,10 +218,10 @@ kw<term> { @specialize<identifier, term> }
     "'" (![\\\n'] | "\\" ![\n]) "'"?
   }
 
-  "{"[name=Punctuation]
-  "}"[name=Punctuation]
-  "("[name=Punctuation]
-  ")"[name=Punctuation]
+  "{"[@name=Punctuation]
+  "}"[@name=Punctuation]
+  "("[@name=Punctuation]
+  ")"[@name=Punctuation]
 }
 
 @detectDelim

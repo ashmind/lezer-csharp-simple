@@ -1,5 +1,7 @@
-## 0.1 (2020-05-06)
+## [0.6.0] - 2020-11-01
+### Changed
+- Updated to lezer 0.12.0
 
-### New Features
-
-First release.
+## [0.1.0] - 2020-05-06
+### Added
+- First release.
