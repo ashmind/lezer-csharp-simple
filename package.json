@@ -1,6 +1,6 @@
 {
   "name": "lezer-csharp-simple",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "engines": {
     "node": ">=16.17.1"
   },
@@ -10,7 +10,7 @@
   "scripts": {
     "build": "lezer-generator src/csharp.grammar -o src/parser && rollup -c",
     "build-debug": "lezer-generator src/csharp.grammar --names -o src/parser && rollup -c",
-    "test": "jest test/*.ts",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js test/*.ts",
     "test-build": "lezer-generator src/csharp.grammar --names -o src/parser && rollup -c && jest test/*.ts"
   },
   "files": [
@@ -42,14 +42,12 @@
     "url": "https://github.com/ashmind/lezer-csharp-simple.git"
   },
   "jest": {
-    "preset": "ts-jest/presets/js-with-ts",
-    "transformIgnorePatterns": [
-      "/node_modules/(?!@lezer/generator)"
-    ],
-    "globals": {
-      "ts-jest": {
-        "tsConfig": "<rootDir>/test/tsconfig.json"
-      }
+    "extensionsToTreatAsEsm": [".ts"],
+    "transform": {
+      "\\.ts$": ["ts-jest", {
+        "tsconfig": "./test/tsconfig.json",
+        "useESM": true
+      }]
     }
   }
 }
