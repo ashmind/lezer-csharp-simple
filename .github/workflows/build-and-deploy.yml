@@ -13,11 +13,11 @@ jobs:
     - run: npm ci
     - run: npm run build
     - run: npm test
-    - if: github.ref == 'refs/heads/master'
+    - if: github.ref == 'refs/heads/main'
       uses: JS-DevTools/npm-publish@v1
       with:
         token: ${{ secrets.NPM_TOKEN }}
-    - if: github.ref == 'refs/heads/master'
+    - if: github.ref == 'refs/heads/main'
       uses: actions/upload-artifact@v2-preview
       with:
         path: ./*.tgz
