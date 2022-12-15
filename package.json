@@ -1,6 +1,6 @@
 {
   "name": "lezer-csharp-simple",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "engines": {
     "node": ">=16.17.1"
   },
@@ -42,12 +42,6 @@
     "url": "https://github.com/ashmind/lezer-csharp-simple.git"
   },
   "jest": {
-    "extensionsToTreatAsEsm": [".ts"],
-    "transform": {
-      "\\.ts$": ["ts-jest", {
-        "tsconfig": "./test/tsconfig.json",
-        "useESM": true
-      }]
-    }
+    "preset": "ts-jest/presets/default-esm"
   }
 }
